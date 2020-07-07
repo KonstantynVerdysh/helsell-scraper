@@ -4,7 +4,7 @@ import org.jsoup.Jsoup;
 
 import java.util.List;
 
-public class EmeritusPageParser {
+public class EmeritusPageParser{
 
     private static final String FULL_NAME_SELECTOR = "h4:nth-child(2)";
     private static final String URL_SELECTOR = "ul.small-block-grid-2.medium-block-grid-4.large-block-grid-5 a";

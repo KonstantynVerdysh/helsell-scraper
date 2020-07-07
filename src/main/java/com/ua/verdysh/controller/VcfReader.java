@@ -1,16 +1,42 @@
 package com.ua.verdysh.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class VcfReader {
 
-    private static final String ADDRESS_MATCHER = "ADR;";
-    private static final String MAIL_MATCHER = "EMAIL;";
-    private static final String PHONE_MATCHER = "TEL;";
+    private VcfReader() {}
 
-    private static final String PRE_ADDRESS_SYMBOLS = ":;;";
-    private static final String PRE_MAIL_SYMBOL = ":";
-    private static final String PRE_PHONE_SYMBOL = ":";
+    public static String readFromUrl(String urlStr) {
 
-    public String getPhone(String vcf) {
-        return null;
+        StringBuilder result = new StringBuilder();
+        URL url = getURL(urlStr);
+
+        if (url != null) {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line).append("\n");
+                }
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println("Error");
+            }
+        }
+        return result.toString();
+    }
+
+    private static URL getURL(String urlStr) {
+        URL url = null;
+        try {
+            url = new URL(urlStr);
+        } catch (MalformedURLException e) {
+            System.out.println(e.getMessage());
+        }
+        return url;
     }
 }
