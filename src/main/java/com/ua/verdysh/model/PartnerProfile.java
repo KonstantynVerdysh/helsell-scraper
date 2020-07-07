@@ -3,16 +3,16 @@ package com.ua.verdysh.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.StringJoiner;
 
 @Getter
 @Setter
-public class FullProfile extends Profile {
+public class PartnerProfile extends Profile {
     private String url;
     private String jobTitle;
-    private String description;
     private String photo;
     private String address;
-    private List<String> education;
-    private List<String> practiceAreas;
+    private StringJoiner description;
+    private StringJoiner education;
+    private StringJoiner practiceAreas;
 }
