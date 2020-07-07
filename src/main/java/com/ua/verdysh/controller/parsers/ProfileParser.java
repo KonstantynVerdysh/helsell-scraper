@@ -1,7 +1,6 @@
 package com.ua.verdysh.controller.parsers;
 
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -16,7 +15,7 @@ public class ProfileParser {
     private static final String VCF_URL_SELECTOR = "p.meta > a:nth-child(2)";
 
     public String getPhoto(String html) {
-        return Jsoup.parse(html).select(PHOTO_SELECTOR).text();
+        return Jsoup.parse(html).select(PHOTO_SELECTOR).attr("src");
     }
 
     public String getJobTitle(String html) {
@@ -24,7 +23,7 @@ public class ProfileParser {
     }
 
     public String getVcf(String html) {
-        return Jsoup.parse(html).select(VCF_URL_SELECTOR).text();
+        return Jsoup.parse(html).select(VCF_URL_SELECTOR).attr("href");
     }
 
     public StringJoiner getDescription(String html) {

@@ -1,5 +1,6 @@
 package com.ua.verdysh.controller.helpers;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -13,11 +14,15 @@ public class ScraperHelper {
         try {
             return Jsoup.connect(url).get();
         } catch (IOException e) {
-            throw new IllegalArgumentException("Invalid URL");
+            System.out.println(e.getMessage());
         }
+        return null;
     }
 
-    public static String getHtml(Document document) {
-        return document.html();
+    public static String getText(Document document, String selector) {
+        if (document != null) {
+            return document.select(selector).text();
+        }
+        return StringUtils.EMPTY;
     }
 }
